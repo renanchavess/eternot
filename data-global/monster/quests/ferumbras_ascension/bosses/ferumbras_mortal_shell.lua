@@ -115,7 +115,7 @@ monster.loot = {
 	{ id = 3035, chance = 100000, maxCount = 25 }, -- platinum coin
 	{ id = 8100, chance = 400 }, -- obsidian truncheon
 	{ id = 7414, chance = 800 }, -- abyss hammer
-	{ id = 5903, chance = 100, unique = true }, -- ferumbras' hat
+	{ id = 5903, chance = 1, unique = true }, -- ferumbras' hat
 	{ id = 22769, chance = 800 }, -- ferumbras' mana keg
 	{ id = 7382, chance = 800 }, -- demonrage sword
 	{ id = 3038, chance = 4000 }, -- green gem
