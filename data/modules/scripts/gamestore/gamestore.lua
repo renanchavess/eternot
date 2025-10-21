@@ -63,7 +63,7 @@ GameStore.Categories = {
 			{
 				icons = { "Premium_Time_30.png" },
 				name = string.format("30 Days of %s", premiumOfferName),
-				price = 250,
+				price = 750,
 				id = 3030,
 				validUntil = 30,
 				description = premiumDescription,
@@ -72,7 +72,7 @@ GameStore.Categories = {
 			{
 				icons = { "Premium_Time_90.png" },
 				name = string.format("90 Days of %s", premiumOfferName),
-				price = 750,
+				price = 2250,
 				id = 3090,
 				validUntil = 90,
 				description = premiumDescription,
@@ -81,7 +81,7 @@ GameStore.Categories = {
 			{
 				icons = { "Premium_Time_180.png" },
 				name = string.format("180 Days of %s", premiumOfferName),
-				price = 1500,
+				price = 4500,
 				id = 3180,
 				validUntil = 180,
 				description = premiumDescription,
@@ -90,7 +90,7 @@ GameStore.Categories = {
 			{
 				icons = { "Premium_Time_360.png" },
 				name = string.format("360 Days of %s", premiumOfferName),
-				price = 3000,
+				price = 9000,
 				id = 3360,
 				validUntil = 360,
 				description = premiumDescription,
@@ -6711,7 +6711,7 @@ GameStore.Categories = {
 			{
 				icons = { "Cerberus_Champion_Puppy.png" },
 				name = "Cerberus Champion Puppy",
-				price = 800,
+				price = 3500,
 				itemtype = 31464,
 				count = 1,
 				description = "{house}\n{box}\n{storeinbox}\n{use}\n{backtoinbox}",
@@ -6833,7 +6833,7 @@ GameStore.Categories = {
 			{
 				icons = { "Jousting_Eagle.png" },
 				name = "Jousting Eagle",
-				price = 1250,
+				price = 3500,
 				id = 145,
 				description = "{info} usable by all characters of the account\n{speedboost}\n\n<i>High above the clouds far away from dry land, the training of giant eagles takes place. Only the cream of the crop is able to survive in such harsh environment long enough to call themselves Jousting Eagles while the weaklings find themselves at the bottom of the sea. The tough ones become noble and graceful mounts that are well known for their agility and endurance.</i>",
 				type = GameStore.OfferTypes.OFFER_TYPE_MOUNT,

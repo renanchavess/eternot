@@ -1448,6 +1448,7 @@ npcConfig.shop = {
 	{ itemName = "the plasmother's remains", clientId = 6535, sell = 50000 },
 	{ itemName = "wad of fairy floss", clientId = 48544, sell = 2910 },
 	{ itemName = "wafer paper flower", clientId = 48251, sell = 2350 },
+	{ itemName = "watermelon tourmaline", clientId = 33780, sell = 230000 },
 }
 
 -- On buy npc shop message
