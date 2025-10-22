@@ -6543,7 +6543,7 @@ GameStore.Categories = {
 			{
 				icons = { "Prey_Bonus_Reroll.png" },
 				name = "Prey Wildcard",
-				price = 25,
+				price = 50,
 				id = GameStore.SubActions.PREY_WILDCARD,
 				count = 5,
 				description = "<i>Use Prey Wildcards to reroll the bonus of an active prey, to lock your active prey or to select a prey of your choice.</i>\n\n{character}\n{info} added directly to Prey dialog\n{info} maximum amount that can be owned by character: 50",
@@ -6612,7 +6612,7 @@ GameStore.Categories = {
 			{
 				icons = { "Prey_Bonus_Reroll.png" },
 				name = "Prey Wildcard",
-				price = 100,
+				price = 200,
 				count = 20,
 				description = "<i>Use Prey Wildcards to reroll the bonus of an active prey, to lock your active prey or to select a prey of your choice.</i>\n\n{character}\n{info} added directly to Prey dialog\n{info} maximum amount that can be owned by character: 50",
 				type = GameStore.OfferTypes.OFFER_TYPE_PREYBONUS,
@@ -6850,7 +6850,7 @@ GameStore.Categories = {
 			{
 				icons = { "Outfit_Lion_of_War_Male_Addon_3.png", "Outfit_Lion_of_War_Female_Addon_3.png" },
 				name = "Full Lion of War Outfit",
-				price = 1750,
+				price = 3500,
 				sexId = { female = 1207, male = 1206 },
 				addon = 3,
 				description = "{info} usable by all characters of the account\n{info} colours can be changed using the Outfit dialog\n{info} includes basic outfit and 2 addons which can be selected individually\n\n<i>The Lion of War has fought on countless battlefields and never lost once. Enemies tremble with fear when he batters his sword against his almighty shield. Realising that a Lion of War knows no mercy, his opponents often surrender before the battle even begins.</i>",
