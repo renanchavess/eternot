@@ -23,11 +23,11 @@ skillsStages = {
         {
                 minlevel = 101,
                 maxlevel = 120,
-                multiplier = 5,
+                multiplier = 6,
         },
         {
                 minlevel = 121,
-                multiplier = 4,
+                multiplier = 5,
         }
 }
 
@@ -45,10 +45,10 @@ magicLevelStages = {
         {
                 minlevel = 101,
                 maxlevel = 120,
-                multiplier = 5,
+                multiplier = 6,
         },
         {
                 minlevel = 121,
-                multiplier = 4,
+                multiplier = 5,
         }
 }
