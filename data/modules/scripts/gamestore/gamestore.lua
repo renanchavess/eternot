@@ -6384,6 +6384,15 @@ GameStore.Categories = {
 				type = GameStore.OfferTypes.OFFER_TYPE_ITEM,
 				coinType = GameStore.CoinType.Transferable,
 			},
+			{
+				icons = { "Stamina_Extension.png" },
+				name = "Stamina Extension Godlike",
+				price = 500,
+				itemtype = 36743,
+				description = "Refill 2h of stamina.\n{character}\n{storeinbox}\n{battlesign}\n{capacity}",
+				type = GameStore.OfferTypes.OFFER_TYPE_ITEM,
+				coinType = GameStore.CoinType.Transferable,
+			},
 		},
 	},
 	-- Extras

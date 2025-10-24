@@ -14,6 +14,7 @@ Concoction.__index = Concoction
 Concoction.Ids = {
 	KooldownAid = Concoction_KooldownAid,
 	StaminaExtension = Concoction_StaminaExtension,
+	StaminaExtensionGodlike = Concoction_StaminaExtensionGodlike,
 	StrikeEnhancement = Concoction_StrikeEnhancement,
 	CharmUpgrade = Concoction_CharmUpgrade,
 	WealthDuplex = Concoction_WealthDuplex,
@@ -33,6 +34,9 @@ Concoction.Ids = {
 	DeathAmplification = Concoction_DeathAmplification,
 	PhysicalAmplification = Concoction_PhysicalAmplification,
 }
+
+-- Fallback for Godlike when enum is not compiled yet
+Concoction.Ids.StaminaExtensionGodlike = Concoction.Ids.StaminaExtensionGodlike or 36743
 
 function Concoction.find(identifier)
 	for _, concoction in ipairs(concoctions) do

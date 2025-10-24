@@ -463,6 +463,7 @@ void LuaEnums::initConcoctionsEnum(lua_State* L) {
 	std::string luaNamespace = "Concoction_";
 	registerEnumNamespace(L, luaNamespace, Concoction_t::KooldownAid);
 	registerEnumNamespace(L, luaNamespace, Concoction_t::StaminaExtension);
+	registerEnumNamespace(L, luaNamespace, Concoction_t::StaminaExtensionGodlike);
 	registerEnumNamespace(L, luaNamespace, Concoction_t::StrikeEnhancement);
 	registerEnumNamespace(L, luaNamespace, Concoction_t::CharmUpgrade);
 	registerEnumNamespace(L, luaNamespace, Concoction_t::WealthDuplex);

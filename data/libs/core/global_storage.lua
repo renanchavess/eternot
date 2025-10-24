@@ -41,6 +41,9 @@ Global = {
 			KooldownAid = {
 				LastActivatedAt = 64005,
 			},
+			StaminaExtensionGodlike = {
+				LastActivatedAt = 64006,
+			},
 			StaminaExtension = {
 				LastActivatedAt = 64007,
 			},

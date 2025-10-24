@@ -68091,6 +68091,11 @@ former students at the Noodles Academy. Awarded by TibiaLabs.com" />
 		<attribute key="description" value="Drinking this potion temporarily amplifies physical damage against monsters" />
 		<attribute key="weight" value="229" />
 	</item>
+	<item id="36743" name="stamina extension godlike">
+		<attribute key="primarytype" value="liquids" />
+		<attribute key="description" value="Drinking this potion fills up stamina by two hours" />
+		<attribute key="weight" value="210" />
+	</item>
 	<item id="36748" article="a" name="brachiodemon trophy">
 		<attribute key="primarytype" value="trophies" />
 		<attribute key="wrapableto" value="23398" />

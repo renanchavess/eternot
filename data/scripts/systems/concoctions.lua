@@ -11,6 +11,13 @@ local configs = {
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have been granted " .. config.amount .. " minutes of stamina.")
 		end,
 	},
+	[Concoction.Ids.StaminaExtensionGodlike] = {
+		amount = 120, -- 120 minutes (2 hours)
+		callback = function(player, config)
+			player:setStamina(player:getStamina() + config.amount)
+			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "You have been granted " .. config.amount .. " minutes of stamina.")
+		end,
+	},
 	[Concoction.Ids.KooldownAid] = {
 		callback = function(player)
 			player:clearSpellCooldowns()
