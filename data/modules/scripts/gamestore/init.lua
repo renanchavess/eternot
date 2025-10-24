@@ -2071,7 +2071,7 @@ function Player.makeCoinTransaction(self, offer, desc)
 		desc = offer.name
 	end
 
-	if offer.Type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST then
+	if offer.type == GameStore.OfferTypes.OFFER_TYPE_EXPBOOST then
 		local expBoostCount = self:getStorageValue(GameStore.Storages.expBoostCount)
 
 		if expBoostCount == -1 or expBoostCount == 0 or expBoostCount > 5 then

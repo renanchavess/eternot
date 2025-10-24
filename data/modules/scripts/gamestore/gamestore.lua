@@ -6377,10 +6377,10 @@ GameStore.Categories = {
 			},
 			{
 				icons = { "Stamina_Extension.png" },
-				name = "Stamina Extension",
-				price = 500,
+				name = "Stamina Extension 1h",
+				price = 250,
 				itemtype = 36725,
-				description = "{character}\n{storeinbox}\n{battlesign}\n{capacity}",
+				description = "Refill 1h of stamina.\n{character}\n{storeinbox}\n{battlesign}\n{capacity}",
 				type = GameStore.OfferTypes.OFFER_TYPE_ITEM,
 				coinType = GameStore.CoinType.Transferable,
 			},
