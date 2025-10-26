@@ -1780,12 +1780,13 @@ function createHirelingType(HirelingName)
 		local playerData = playerImbuementData[playerId]
 
 		if playerData then
-			local moneyRequired = playerData.moneyRequired
+			local tokenRequired = playerData.moneyRequired
+			local goldTokenId = 22721
 			local itemList = playerData.itemList
-			if player:getMoney() + player:getBankBalance() < moneyRequired then
-				npcHandler:say("Sorry, you don't have enough money", npc, player)
+			if player:getItemCount(goldTokenId) < tokenRequired then
+				npcHandler:say("Sorry, you don't have enough gold tokens.", npc, player)
 				npcHandler:setTopic(player:getId(), 0)
-				return false, "You don't have enough money."
+				return false, "You don't have enough gold tokens."
 			end
 
 			local totalWeight = 0
@@ -1807,7 +1808,7 @@ function createHirelingType(HirelingName)
 				shoppingBag:addItem(item.itemId, item.count)
 			end
 
-			player:removeMoneyBank(moneyRequired)
+			player:removeItem(goldTokenId, tokenRequired)
 
 			return true
 		end
@@ -2276,10 +2277,11 @@ function createHirelingType(HirelingName)
 	local function purchaseItems(npc, player, message)
 		local packageData = imbuementPackagesData[message]
 		if packageData and npcHandler:getTopic(player:getId()) == TOPIC.IMBUEMENT_START then
-			npcHandler:say("Do you want to buy items for " .. packageData.text .. " imbuement for " .. packageData.moneyRequired .. " gold?", npc, player)
+			local priceTokens = (message == "strike" or message == "vampirism" or message == "void") and 8 or 20
+			npcHandler:say("Do you want to buy items for " .. packageData.text .. " imbuement for " .. priceTokens .. " gold tokens?", npc, player)
 			npcHandler:setTopic(player:getId(), TOPIC.IMBUEMENT_BUY)
 			playerImbuementData[player:getId()] = {
-				moneyRequired = packageData.moneyRequired,
+				moneyRequired = priceTokens,
 				itemList = packageData.itemList,
 			}
 		end

@@ -93,7 +93,7 @@ monster.loot = {
 	{ name = "ultimate health potion", chance = 9290, maxCount = 2 },
 	{ id = 8896, chance = 500 }, -- slightly rusted armor
 	{ name = "sacred tree amulet", chance = 850 },
-	{ name = "strand of medusa hair", chance = 9900 },
+	{ name = "strand of medusa hair", chance = 2500 },
 }
 
 monster.attacks = {
