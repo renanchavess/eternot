@@ -5785,6 +5785,10 @@ std::map<uint16_t, uint16_t> &Player::getAllSaleItemIdAndCount(std::map<uint16_t
 			}
 		}
 
+		if (item->hasImbuements()) {
+			continue;
+		}
+
 		countMap[item->getID()] += item->getItemCount();
 	}
 
@@ -11301,7 +11305,6 @@ void Player::sendMessageDialog(const std::string &message) const {
 	}
 }
 
-// Account
 // Account
 
 bool Player::setAccount(uint32_t accountId) {
