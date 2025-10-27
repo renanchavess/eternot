@@ -2,7 +2,7 @@ local mType = Game.createMonsterType("Bakragore")
 local monster = {}
 
 monster.description = "Bakragore"
-monster.experience = 15000000
+monster.experience = 10000000
 monster.outfit = {
 	lookType = 1671,
 	lookHead = 0,
@@ -108,16 +108,16 @@ monster.loot = {
 	{ name = "figurine of bakragore", chance = 10970 },
 	{ name = "bakragore's amalgamation", chance = 570 },
 	{ name = "spiritual horseshoe", chance = 470 },
-	{ id = 43895, chance = 360 }, -- Bag you covet
+	{ id = 43895, chance = 2000 }, -- Bag you covet
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -3000 },
-	{ name = "combat", interval = 3000, chance = 35, type = COMBAT_ICEDAMAGE, minDamage = -900, maxDamage = -1100, range = 7, radius = 7, shootEffect = CONST_ANI_ICE, effect = 243, target = true },
-	{ name = "combat", interval = 2000, chance = 13, type = COMBAT_DEATHDAMAGE, minDamage = -100, maxDamage = -1000, length = 8, spread = 0, effect = 252, target = false },
-	{ name = "combat", interval = 3000, chance = 30, type = COMBAT_FIREDAMAGE, minDamage = -1000, maxDamage = -2000, length = 8, spread = 0, effect = 249, target = false },
-	{ name = "combat", interval = 2000, chance = 30, type = COMBAT_ICEDAMAGE, minDamage = -950, maxDamage = -2400, range = 7, radius = 3, shootEffect = 37, effect = 240, target = true },
-	{ name = "combat", interval = 2000, chance = 10, type = COMBAT_DEATHDAMAGE, minDamage = -1000, maxDamage = -2500, length = 8, spread = 0, effect = 244, target = false },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 1500, maxDamage = -3000 },
+	{ name = "combat", interval = 3000, chance = 35, type = COMBAT_ICEDAMAGE, minDamage = -1500, maxDamage = -2100, range = 7, radius = 7, shootEffect = CONST_ANI_ICE, effect = 243, target = true },
+	{ name = "combat", interval = 2000, chance = 25, type = COMBAT_DEATHDAMAGE, minDamage = -1000, maxDamage = -2000, length = 8, spread = 0, effect = 252, target = false },
+	{ name = "combat", interval = 3000, chance = 35, type = COMBAT_FIREDAMAGE, minDamage = -1000, maxDamage = -2000, length = 8, spread = 0, effect = 249, target = false },
+	{ name = "combat", interval = 2000, chance = 35, type = COMBAT_ICEDAMAGE, minDamage = -950, maxDamage = -2400, range = 7, radius = 3, shootEffect = 37, effect = 240, target = true },
+	{ name = "combat", interval = 2000, chance = 20, type = COMBAT_DEATHDAMAGE, minDamage = -1000, maxDamage = -2500, length = 8, spread = 0, effect = 244, target = false },
 }
 
 monster.defenses = {

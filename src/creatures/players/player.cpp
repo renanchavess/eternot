@@ -961,6 +961,10 @@ void Player::updateInventoryImbuement() {
 			if (categoryImbuement && !categoryImbuement->agressive && parent && parent != getPlayer()) {
 				continue;
 			}
+			// VIP-only: pause non-aggressive imbuements while inside protection zone
+			if (categoryImbuement && !categoryImbuement->agressive && isInProtectionZone && isVip()) {
+				continue;
+			}
 
 			// If the imbuement's duration is 0, remove its stats and continue to the next slot
 			if (imbuementInfo.duration == 0) {
