@@ -1,8 +1,8 @@
 local mType = Game.createMonsterType("Goshnar's Megalomania Blue")
 local monster = {}
 
-monster.name = "Goshnar's Megalomania"
-monster.description = "Goshnar's Megalomania"
+monster.name = "Goshnar's Megalomania Blue"
+monster.description = "Goshnar's Megalomania Blue"
 monster.experience = 3000000
 monster.outfit = {
 	lookType = 1337,
