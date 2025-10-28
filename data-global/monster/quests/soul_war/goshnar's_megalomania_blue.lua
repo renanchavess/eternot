@@ -8,8 +8,8 @@ monster.outfit = {
 	lookType = 1337,
 }
 
-monster.health = 620000
-monster.maxHealth = 620000
+monster.health = 420000
+monster.maxHealth = 420000
 monster.race = "undead"
 monster.corpse = 33889
 monster.speed = 0
@@ -93,7 +93,7 @@ monster.loot = {
 	{ name = "figurine of megalomania", chance = 400 },
 	{ name = "megalomania's skull", chance = 400 },
 	{ name = "megalomania's essence", chance = 400 },
-	{ name = "bag you desire", chance = 100 },
+	{ name = "bag you desire", chance = 1000 },
 }
 
 monster.attacks = {

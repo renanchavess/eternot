@@ -3822,11 +3822,11 @@ void Player::death(const std::shared_ptr<Creature> &lastHitCreature) {
 		const auto charmBlessRaceId = charmBless.raceId;
 		const auto &charm = g_iobestiary().getBestiaryCharm(CHARM_BLESS);
 		if (charm && lastHitCreature && lastHitCreature->getMonster() && charmBlessRaceId != 0) {
-			const auto &mType = g_monsters().getMonsterType(lastHitCreature->getName());
-			if (mType && mType->info.raceid == charmBlessRaceId) {
-				const auto percentReduction = charm->chance[charmBless.tier] / 100;
-				deathLossPercent -= deathLossPercent * percentReduction;
-			}
+		const auto &mType = lastHitCreature->getMonster()->getMonsterType();
+		if (mType && mType->info.raceid == charmBlessRaceId) {
+			const auto percentReduction = charm->chance[charmBless.tier] / 100;
+			deathLossPercent -= deathLossPercent * percentReduction;
+		}
 		}
 
 		double magicLossPercent = deathLossPercent / 100.;

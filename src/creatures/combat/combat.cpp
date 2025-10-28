@@ -752,10 +752,10 @@ void Combat::CombatHealthFunc(const std::shared_ptr<Creature> &caster, const std
 			return;
 		}
 
-		const auto &mType = g_monsters().getMonsterType(targetMonster->getName());
-		if (!mType || playerCharmRaceid != mType->info.raceid) {
-			return;
-		}
+        const auto &mType = targetMonster->getMonsterType();
+        if (!mType || playerCharmRaceid != mType->info.raceid) {
+            return;
+        }
 
 		const auto &charm = g_iobestiary().getBestiaryCharm(CHARM_FATAL);
 		if (!charm) {
@@ -2483,10 +2483,10 @@ void Combat::applyExtensions(const std::shared_ptr<Creature> &caster, const std:
 						continue;
 					}
 
-					const auto &mType = g_monsters().getMonsterType(targetMonster->getName());
-					if (!mType) {
-						continue;
-					}
+                    const auto &mType = targetMonster->getMonsterType();
+                    if (!mType) {
+                        continue;
+                    }
 
 					uint16_t raceId = mType->info.raceid;
 
@@ -2515,10 +2515,10 @@ void Combat::applyExtensions(const std::shared_ptr<Creature> &caster, const std:
 
 			const auto &targetMonster = targetCreature->getMonster();
 			if (targetMonster) {
-				const auto &mType = g_monsters().getMonsterType(targetMonster->getName());
-				if (!mType) {
-					continue;
-				}
+                const auto &mType = targetMonster->getMonsterType();
+                if (!mType) {
+                    continue;
+                }
 
 				uint16_t raceId = mType->info.raceid;
 

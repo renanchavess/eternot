@@ -8070,7 +8070,7 @@ bool Game::combatChangeMana(const std::shared_ptr<Creature> &attacker, const std
 	if (targetPlayer && attackerMonster) {
 		uint16_t playerCharmRaceid = targetPlayer->parseRacebyCharm(CHARM_VOIDINVERSION);
 		if (playerCharmRaceid != 0) {
-			const auto &mType = g_monsters().getMonsterType(attackerMonster->getName());
+			const auto &mType = attackerMonster->getMonsterType();
 			if (mType && playerCharmRaceid == mType->info.raceid) {
 				const auto &charm = g_iobestiary().getBestiaryCharm(CHARM_VOIDINVERSION);
 				const auto charmTier = targetPlayer->getCharmTier(CHARM_VOIDINVERSION);
@@ -8185,10 +8185,10 @@ bool Game::combatChangeMana(const std::shared_ptr<Creature> &attacker, const std
 			}
 		}
 
-		std::shared_ptr<MonsterType> mType = nullptr;
-		if (attackerMonster) {
-			mType = g_monsters().getMonsterType(attackerMonster->getName());
-		}
+	std::shared_ptr<MonsterType> mType = nullptr;
+	if (attackerMonster) {
+		mType = attackerMonster->getMonsterType();
+	}
 		if (targetPlayer && attacker && mType) {
 			auto [major, minor] = g_iobestiary().getCharmFromTarget(targetPlayer, mType);
 			for (auto charmType : { major, minor }) {
