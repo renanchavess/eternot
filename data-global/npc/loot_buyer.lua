@@ -621,9 +621,9 @@ npcConfig.shop = {
 	{ itemName = "ring of blue plasma", clientId = 23529, sell = 8000 },
 	{ itemName = "ring of green plasma", clientId = 23531, sell = 8000 },
 	{ itemName = "ring of red plasma", clientId = 23533, sell = 8000 },
-	{ itemName = "collar of blue plasma", clientId = 23526, sell = 6000 },
-	{ itemName = "collar of green plasma", clientId = 23527, sell = 6000 },
-	{ itemName = "collar of red plasma", clientId = 23528, sell = 6000 },
+	{ itemName = "collar of blue plasma", clientId = 23542, sell = 6000 },
+	{ itemName = "collar of green plasma", clientId = 23543, sell = 6000 },
+	{ itemName = "collar of red plasma", clientId = 23544, sell = 6000 },
 	{ itemName = "abomination's tail", clientId = 36791, sell = 700000 },
 	{ itemName = "abomination's tongue", clientId = 36793, sell = 900000 },
 	{ itemName = "abomination's eye", clientId = 36792, sell = 650000 },
@@ -1448,6 +1448,8 @@ npcConfig.shop = {
 	{ itemName = "the plasmother's remains", clientId = 6535, sell = 50000 },
 	{ itemName = "wad of fairy floss", clientId = 48544, sell = 2910 },
 	{ itemName = "wafer paper flower", clientId = 48251, sell = 2350 },
+	{ itemName = "watermelon tourmaline", clientId = 33780, sell = 230000 },
+	{ itemName = "giant shimmering pearl", clientId = 282, sell = 3000 },
 }
 
 -- On buy npc shop message

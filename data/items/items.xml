@@ -900,7 +900,7 @@
 	</item>
 	<item fromid="454" toid="462" name="wooden floor">
 		<attribute key="primarytype" value="artificial tiles" />
-	</item>
+	</item>	
 	<item id="463" article="a" name="white stone tile">
 		<attribute key="primarytype" value="artificial tiles" />
 	</item>

@@ -133,6 +133,17 @@ local products = {
 			value = 6,
 		},
 	},
+	["featherweight"] = {
+		["powerful"] = {
+			text = "The powerful bundle for the featherweight imbuement consists of 20 fairy wings, 10 little bowls of myrrh and 5 goosebump leather. Would you like to buy it for 12 gold tokens??",
+			itens = {
+				[1] = { id = 25694, amount = 20 },
+				[2] = { id = 25702, amount = 10 },
+				[3] = { id = 20205, amount = 5 },
+			},
+			value = 12,
+		},
+	},
 }
 
 local answerType = {}
@@ -184,17 +195,18 @@ local function creatureSayCallback(npc, creature, type, message)
 	elseif MsgContains(message, "worth") then
 		-- to do: check if Heart of Destruction was killed
 		-- after kill message: 'You disrupted the Heart of Destruction, defeated the World Devourer and bought our world some time. You have proven your worth.'
-		npcHandler:say({ "Disrupt the Heart of Destruction, fell the World Devourer to prove your worth and you will be granted the power to imbue 'Powerful Strike', 'Powerful Void' and --'Powerful Vampirism'." }, npc, creature)
+		npcHandler:say({ "Disrupt the Heart of Destruction, fell the World Devourer to prove your worth and you will be granted the power to imbue 'Powerful Strike', 'Powerful Void', 'Powerful Vampirism' and 'Powerful Featherweight'." }, npc, creature)
 	elseif MsgContains(message, "tokens") then
 		npc:openShopWindow(creature)
 		npcHandler:say("If you have any gold tokens with you, let's have a look! These are my offers.", npc, creature)
 	elseif MsgContains(message, "trade") then
-		npcHandler:say({ "I have creature products for the imbuements {strike}, {vampirism} and {void}. Make your choice, please!" }, npc, creature)
+		npcHandler:say({ "I have creature products for the imbuements {strike}, {vampirism}, {void} and {featherweight}. Make your choice, please!" }, npc, creature)
 		npcHandler:setTopic(playerId, 1)
 	elseif npcHandler:getTopic(playerId) == 1 then
 		local imbueType = products[message:lower()]
 		if imbueType then
-			npcHandler:say({ "You have chosen " .. message .. ". {Basic}, {intricate} or {powerful}?" }, npc, creature)
+			local optionsText = message:lower() == "featherweight" and "{powerful}?" or "{Basic}, {intricate} or {powerful}?"
+			npcHandler:say({ "You have chosen " .. message .. ". " .. optionsText }, npc, creature)
 			answerType[playerId] = message
 			npcHandler:setTopic(playerId, 2)
 		end
