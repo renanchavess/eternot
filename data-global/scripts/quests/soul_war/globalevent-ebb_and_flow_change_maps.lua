@@ -170,11 +170,19 @@ end
 local loadEmptyMap = GlobalEvent("SoulWarQuest.ebbAndFlow")
 
 function loadEmptyMap.onStartup()
-	SoulWarQuest.ebbAndFlow.pendingEvents = {}
+    SoulWarQuest.ebbAndFlow.pendingEvents = {}
 
-	Game.loadMap(SoulWarQuest.ebbAndFlow.mapsPath.ebbFlow)
-	loadMapEmpty()
-	SoulWarQuest.ebbAndFlow.updateZonePlayers()
+    Game.loadMap(SoulWarQuest.ebbAndFlow.mapsPath.ebbFlow)
+    -- Força iniciar com água baixa (empty)
+    loadMapEmpty()
+    SoulWarQuest.ebbAndFlow.updateZonePlayers()
+
+    --[[
+    Para manter água sempre elevada (inundate) no startup, troque a linha acima por:
+        loadMapInundate()
+    Ou descomente a linha abaixo:
+        -- loadMapInundate()
+    ]]
 end
 
 loadEmptyMap:register()
@@ -182,15 +190,21 @@ loadEmptyMap:register()
 local eddAndFlowInundate = GlobalEvent("eddAndFlowInundate")
 
 function eddAndFlowInundate.onThink(interval, lastExecution)
-	if SoulWarQuest.ebbAndFlow.isLoadedEmptyMap() then
-		logger.trace("Map change to empty in {} minutes.", SoulWarQuest.ebbAndFlow.intervalChangeMap)
-		loadMapInundate()
-	elseif SoulWarQuest.ebbAndFlow.isActive() then
-		logger.trace("Map change to inundate in {} minutes.", SoulWarQuest.ebbAndFlow.intervalChangeMap)
-		loadMapEmpty()
-	end
+    -- Comentado: alternância padrão entre mapas (empty <-> inundate)
+    -- if SoulWarQuest.ebbAndFlow.isLoadedEmptyMap() then
+    --     logger.trace("Map change to empty in {} minutes.", SoulWarQuest.ebbAndFlow.intervalChangeMap)
+    --     loadMapInundate()
+    -- elseif SoulWarQuest.ebbAndFlow.isActive() then
+    --     logger.trace("Map change to inundate in {} minutes.", SoulWarQuest.ebbAndFlow.intervalChangeMap)
+    --     loadMapEmpty()
+    -- end
 
-	return true
+    -- Forçar água sempre baixa e desativar alternância
+    if SoulWarQuest.ebbAndFlow.isActive() or (not SoulWarQuest.ebbAndFlow.isLoadedEmptyMap()) then
+        loadMapEmpty()
+    end
+
+    return true
 end
 
 eddAndFlowInundate:interval(SoulWarQuest.ebbAndFlow.intervalChangeMap * 60 * 1000)
