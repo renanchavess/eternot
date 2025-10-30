@@ -98,6 +98,9 @@ monster.loot = {
 	{ name = "raw watermelon tourmaline", chance = 1050, maxCount = 1 },
 	{ name = "the essence of chagorz", chance = 1050, maxCount = 1 },
 	{ name = "unicorn figurine", chance = 500 },
+	{ name = "darklight geode", chance = 500 },
+	{ name = "cursed wood", chance = 500 },
+	{ name = "spiritual horseshoe", chance = 470 },
 	{ id = 43895, chance = 1500 }, -- Bag you covet
 }
 

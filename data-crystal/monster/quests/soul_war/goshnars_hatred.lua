@@ -92,7 +92,7 @@ monster.loot = {
 	{ name = "spectral horseshoe", chance = 400 },
 	{ name = "spectral horse tack", chance = 400 },
 	{ name = "bracelet of strengthening", chance = 400 },
-	{ name = "bag you desire", chance = 1000 },
+	{ name = "bag you desire", chance = 2000 },
 }
 
 monster.attacks = {

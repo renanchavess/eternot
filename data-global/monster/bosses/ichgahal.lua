@@ -100,6 +100,7 @@ monster.loot = {
 	{ name = "putrefactive figurine", chance = 11416, maxCount = 1 },
 	{ name = "ichgahal's fungal infestation", chance = 7902, maxCount = 1 },
 	{ name = "white gem", chance = 13559, maxCount = 3 },
+	{ name = "spiritual horseshoe", chance = 470 },
 	{ id = 43895, chance = 1500 }, -- Bag you covet
 }
 

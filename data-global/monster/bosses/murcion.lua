@@ -86,6 +86,7 @@ monster.loot = {
 	{ name = "supreme health potion", chance = 6212, maxCount = 102 },
 	{ name = "ultimate mana potion", chance = 8785, maxCount = 29 },
 	{ name = "ultimate spirit potion", chance = 8783, maxCount = 161 },
+	{ name = "spiritual horseshoe", chance = 470 },
 	{ id = 43895, chance = 1500 }, -- Bag you covet
 }
 

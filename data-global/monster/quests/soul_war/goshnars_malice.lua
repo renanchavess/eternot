@@ -96,7 +96,7 @@ monster.loot = {
 	{ name = "spectral horseshoe", chance = 400 },
 	{ name = "the skull of a beast", chance = 400 },
 	{ name = "figurine of malice", chance = 400 },
-	{ name = "bag you desire", chance = 100 },
+	{ name = "bag you desire", chance = 2000 },
 }
 
 monster.attacks = {

@@ -97,6 +97,10 @@ monster.loot = {
 	{ name = "raw watermelon tourmaline", chance = 9302, maxCount = 1 },
 	{ name = "vemiath's infused basalt", chance = 7914, maxCount = 1 },
 	{ name = "violet gem", chance = 7210, maxCount = 1 },
+	{ name = "darklight geode", chance = 500 },
+	{ name = "cursed wood", chance = 500 },
+	{ name = "spiritual horseshoe", chance = 470 },
+	
 	{ id = 43895, chance = 1500 }, -- Bag you covet
 }
 
