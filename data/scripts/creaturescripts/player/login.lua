@@ -165,6 +165,7 @@ function playerLoginGlobal.onLogin(player)
 	-- Remove Boss Time
 	if GetDailyRewardLastServerSave() >= player:getLastLoginSaved() then
 		player:setRemoveBossTime(1)
+		player:setStorageValue(51052, -1)
 	end
 
 	-- Remove combat protection
