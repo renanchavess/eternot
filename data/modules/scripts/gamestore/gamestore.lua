@@ -6908,7 +6908,7 @@ GameStore.Categories = {
 		rookgaard = true,
 		state = GameStore.States.STATE_NONE,
 		offers = {
-			{ icons = { "Wealth_Duplex.png" }, name = "Wealth Duplex", price = 200, itemtype = 36727, count = 1, coinType = GameStore.CoinType.Coin, movable = true, type = GameStore.OfferTypes.OFFER_TYPE_ITEM },
+			{ icons = { "Wealth_Duplex.png" }, name = "Wealth Duplex", price = 125, itemtype = 36727, count = 1, coinType = GameStore.CoinType.Coin, movable = true, type = GameStore.OfferTypes.OFFER_TYPE_ITEM },
 			{ icons = { "Charm_Upgrade.png" }, name = "Charm Upgrade", price = 100, itemtype = 36726, count = 1, coinType = GameStore.CoinType.Coin, movable = true, type = GameStore.OfferTypes.OFFER_TYPE_ITEM },
 			{ icons = { "Bestiary_Betterment.png" }, name = "Bestiary Betterment", price = 100, itemtype = 36728, count = 1, coinType = GameStore.CoinType.Coin, movable = true, type = GameStore.OfferTypes.OFFER_TYPE_ITEM },
 			{ icons = { "Kooldown-aid.png" }, name = "Kooldown-aid", price = 250, itemtype = 36723, count = 1, coinType = GameStore.CoinType.Coin, movable = true, type = GameStore.OfferTypes.OFFER_TYPE_ITEM },
