@@ -151,4 +151,8 @@ private:
 	static int luaMonsterTypeGetMonstersByBestiaryStars(lua_State* L);
 
 	static int luaMonsterTypeVariant(lua_State* L);
+
+	// Per-turn attack configuration
+	static int luaMonsterTypeAttacksPerTurn(lua_State* L);
+	static int luaMonsterTypeAttackTurnPolicy(lua_State* L);
 };

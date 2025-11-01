@@ -1159,60 +1159,114 @@ void Monster::onThink(uint32_t interval) {
 }
 
 void Monster::doAttacking(uint32_t interval) {
-	const auto &attackedCreature = getAttackedCreature();
-	if (!attackedCreature || (isSummon() && attackedCreature.get() == this)) {
-		return;
-	}
+    const auto &attackedCreature = getAttackedCreature();
+    if (!attackedCreature || (isSummon() && attackedCreature.get() == this)) {
+        return;
+    }
 
-	bool updateLook = true;
-	bool resetTicks = interval != 0;
-	attackTicks += interval;
+    bool updateLook = true;
+    bool resetTicks = interval != 0;
+    attackTicks += interval;
 
-	const Position &myPos = getPosition();
-	const Position &targetPos = attackedCreature->getPosition();
+    const Position &myPos = getPosition();
+    const Position &targetPos = attackedCreature->getPosition();
 
-	for (const spellBlock_t &spellBlock : attackSpells) {
-		bool inRange = false;
+    // Per-turn attack limits and composition
+    const auto policy = mType->info.attackTurnPolicy;
+    const uint8_t maxAttacks = mType->info.attacksPerTurn;
+    uint8_t attacksUsed = 0;
+    bool meleeUsed = false;
+    bool spellUsed = false;
 
-		if (spellBlock.spell == nullptr || (spellBlock.isMelee && isFleeing())) {
-			continue;
-		}
+    auto tryCast = [&](const spellBlock_t &sb) {
+        bool inRange = false;
+        if (sb.spell == nullptr || (sb.isMelee && isFleeing())) {
+            return;
+        }
 
-		if (canUseSpell(myPos, targetPos, spellBlock, interval, inRange, resetTicks)) {
-			if (spellBlock.chance >= static_cast<uint32_t>(uniform_random(1, 100))) {
-				if (updateLook) {
-					updateLookDirection();
-					updateLook = false;
-				}
+        if (canUseSpell(myPos, targetPos, sb, interval, inRange, resetTicks)) {
+            if (sb.chance >= static_cast<uint32_t>(uniform_random(1, 100))) {
+                if (policy != MonsterType::ATTACK_TURN_UNRESTRICTED && attacksUsed >= maxAttacks) {
+                    return; // reached per-turn cap
+                }
 
-				minCombatValue = spellBlock.minCombatValue;
-				maxCombatValue = spellBlock.maxCombatValue;
+                // Composition rules
+                if (!sb.isMelee) {
+                    if (policy == MonsterType::ATTACK_TURN_MELEE_ONLY) {
+                        return; // skip spells entirely
+                    }
+                    if (policy == MonsterType::ATTACK_TURN_ALTERNATE && meleeUsed) {
+                        return; // can't mix categories in the same turn
+                    }
+                    if (policy == MonsterType::ATTACK_TURN_MELEE_PLUS_SPELL && spellUsed) {
+                        return; // allow only one spell per turn in addition to melee
+                    }
+                } else {
+                    if (policy == MonsterType::ATTACK_TURN_ALTERNATE && spellUsed) {
+                        return; // can't mix categories in the same turn
+                    }
+                    if (policy == MonsterType::ATTACK_TURN_MELEE_PLUS_SPELL && meleeUsed) {
+                        return; // allow only one melee per turn in addition to spell
+                    }
+                }
 
-				if (spellBlock.spell == nullptr) {
-					continue;
-				}
+                if (updateLook) {
+                    updateLookDirection();
+                    updateLook = false;
+                }
 
-				spellBlock.spell->castSpell(getMonster(), attackedCreature);
+                minCombatValue = sb.minCombatValue;
+                maxCombatValue = sb.maxCombatValue;
 
-				if (spellBlock.isMelee) {
-					extraMeleeAttack = false;
-				}
-			}
-		}
+                sb.spell->castSpell(getMonster(), attackedCreature);
 
-		if (!inRange && spellBlock.isMelee) {
-			// melee swing out of reach
-			extraMeleeAttack = true;
-		}
-	}
+                if (sb.isMelee) {
+                    extraMeleeAttack = false;
+                    meleeUsed = true;
+                } else {
+                    spellUsed = true;
+                }
 
-	if (updateLook) {
-		updateLookDirection();
-	}
+                if (policy != MonsterType::ATTACK_TURN_UNRESTRICTED) {
+                    ++attacksUsed;
+                }
+            }
+        }
 
-	if (resetTicks) {
-		attackTicks = 0;
-	}
+        if (!inRange && sb.isMelee) {
+            // melee swing out of reach
+            extraMeleeAttack = true;
+        }
+    };
+
+    if (policy == MonsterType::ATTACK_TURN_UNRESTRICTED && maxAttacks == 255) {
+        // Preserve original behavior and ordering when unrestricted
+        for (const spellBlock_t &sb : attackSpells) {
+            tryCast(sb);
+        }
+    } else {
+        // Prefer melee first when applying composition policies
+        for (const spellBlock_t &sb : attackSpells) {
+            if (!sb.isMelee) {
+                continue;
+            }
+            tryCast(sb);
+        }
+        for (const spellBlock_t &sb : attackSpells) {
+            if (sb.isMelee) {
+                continue;
+            }
+            tryCast(sb);
+        }
+    }
+
+    if (updateLook) {
+        updateLookDirection();
+    }
+
+    if (resetTicks) {
+        attackTicks = 0;
+    }
 }
 
 bool Monster::hasExtraSwing() {

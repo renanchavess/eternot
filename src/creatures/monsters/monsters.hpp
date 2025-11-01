@@ -52,7 +52,14 @@ struct spellBlock_t {
 };
 
 class MonsterType {
-	struct MonsterInfo {
+    // Controls how many and which attacks a monster can perform per turn
+    enum AttackTurnPolicy_t {
+        ATTACK_TURN_UNRESTRICTED = 0,     // Engine default: cast all eligible attacks
+        ATTACK_TURN_MELEE_ONLY,           // Only melee attacks; skip spells entirely
+        ATTACK_TURN_ALTERNATE,            // Either melee or one spell per turn (prefer melee)
+        ATTACK_TURN_MELEE_PLUS_SPELL      // Melee and up to one spell in same turn
+    };
+    struct MonsterInfo {
 		LuaScriptInterface* scriptInterface {};
 
 		std::map<CombatType_t, int32_t> elementMap;
@@ -156,10 +163,14 @@ class MonsterType {
 		bool canWalkOnPoison = true;
 		bool isForgeCreature = true;
 		bool isPreyable = true;
-		bool isPreyExclusive = false;
+        bool isPreyExclusive = false;
 
-		MonstersEvent_t eventType = MONSTERS_EVENT_NONE;
-	};
+        MonstersEvent_t eventType = MONSTERS_EVENT_NONE;
+
+        // Per-turn attack limits and policy
+        uint8_t attacksPerTurn = 255; // 255 means effectively unrestricted
+        AttackTurnPolicy_t attackTurnPolicy = ATTACK_TURN_UNRESTRICTED;
+    };
 
 public:
 	MonsterType() = default;

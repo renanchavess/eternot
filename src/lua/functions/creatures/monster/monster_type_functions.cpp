@@ -162,6 +162,10 @@ void MonsterTypeFunctions::init(lua_State* L) {
 	Lua::registerMethod(L, "MonsterType", "variant", MonsterTypeFunctions::luaMonsterTypeVariant);
 	Lua::registerMethod(L, "MonsterType", "getMonstersByRace", MonsterTypeFunctions::luaMonsterTypeGetMonstersByRace);
 	Lua::registerMethod(L, "MonsterType", "getMonstersByBestiaryStars", MonsterTypeFunctions::luaMonsterTypeGetMonstersByBestiaryStars);
+
+	// Per-turn attack system
+	Lua::registerMethod(L, "MonsterType", "attacksPerTurn", MonsterTypeFunctions::luaMonsterTypeAttacksPerTurn);
+	Lua::registerMethod(L, "MonsterType", "attackTurnPolicy", MonsterTypeFunctions::luaMonsterTypeAttackTurnPolicy);
 }
 
 void MonsterTypeFunctions::createMonsterTypeLootLuaTable(lua_State* L, const std::vector<LootBlock> &lootList) {
@@ -1079,6 +1083,61 @@ int MonsterTypeFunctions::luaMonsterTypeAddDefense(lua_State* L) {
 	return 1;
 }
 
+// attacksPerTurn getter/setter
+int MonsterTypeFunctions::luaMonsterTypeAttacksPerTurn(lua_State* L) {
+    // get: monsterType:attacksPerTurn() set: monsterType:attacksPerTurn(number)
+    const auto &monsterType = Lua::getUserdataShared<MonsterType>(L, 1);
+    if (monsterType) {
+        if (lua_gettop(L) == 1) {
+            lua_pushnumber(L, monsterType->info.attacksPerTurn);
+        } else {
+            uint32_t val = Lua::getNumber<uint32_t>(L, 2);
+            monsterType->info.attacksPerTurn = static_cast<uint8_t>(std::min<uint32_t>(val, 255));
+            Lua::pushBoolean(L, true);
+        }
+    } else {
+        lua_pushnil(L);
+    }
+    return 1;
+}
+
+// attackTurnPolicy getter/setter
+static MonsterType::AttackTurnPolicy_t getAttackTurnPolicyFromString(const std::string &s) {
+    const std::string v = asLowerCaseString(s);
+    if (v == "melee_only") {
+        return MonsterType::ATTACK_TURN_MELEE_ONLY;
+    } else if (v == "alternate") {
+        return MonsterType::ATTACK_TURN_ALTERNATE;
+    } else if (v == "melee_plus_spell") {
+        return MonsterType::ATTACK_TURN_MELEE_PLUS_SPELL;
+    }
+    return MonsterType::ATTACK_TURN_UNRESTRICTED;
+}
+
+static std::string getAttackTurnPolicyString(MonsterType::AttackTurnPolicy_t p) {
+    switch (p) {
+        case MonsterType::ATTACK_TURN_MELEE_ONLY: return "melee_only";
+        case MonsterType::ATTACK_TURN_ALTERNATE: return "alternate";
+        case MonsterType::ATTACK_TURN_MELEE_PLUS_SPELL: return "melee_plus_spell";
+        default: return "unrestricted";
+    }
+}
+
+int MonsterTypeFunctions::luaMonsterTypeAttackTurnPolicy(lua_State* L) {
+    // get: monsterType:attackTurnPolicy() set: monsterType:attackTurnPolicy(string)
+    const auto &monsterType = Lua::getUserdataShared<MonsterType>(L, 1);
+    if (monsterType) {
+        if (lua_gettop(L) == 1) {
+            Lua::pushString(L, getAttackTurnPolicyString(monsterType->info.attackTurnPolicy));
+        } else {
+            monsterType->info.attackTurnPolicy = getAttackTurnPolicyFromString(Lua::getString(L, 2));
+            Lua::pushBoolean(L, true);
+        }
+    } else {
+        lua_pushnil(L);
+    }
+    return 1;
+}
 int MonsterTypeFunctions::luaMonsterTypeAddElement(lua_State* L) {
 	// monsterType:addElement(type, percent)
 	const auto &monsterType = Lua::getUserdataShared<MonsterType>(L, 1);
