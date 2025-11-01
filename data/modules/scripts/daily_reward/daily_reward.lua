@@ -308,22 +308,11 @@ DailyReward.init = function(playerId)
 		player:setJokerTokens(player:getJokerTokens() + 1)
 	end
 
-	local timeMath = GetDailyRewardLastServerSave() - player:getNextRewardTime()
-	if player:getNextRewardTime() < GetDailyRewardLastServerSave() then
-		if player:getStorageValue(DailyReward.storages.notifyReset) ~= GetDailyRewardLastServerSave() then
-			player:setStorageValue(DailyReward.storages.notifyReset, GetDailyRewardLastServerSave())
-			timeMath = math.ceil(timeMath / DailyReward.serverTimeThreshold)
-			if player:getJokerTokens() >= timeMath then
-				player:setJokerTokens(player:getJokerTokens() - timeMath)
-				player:sendTextMessage(MESSAGE_LOGIN, "You lost " .. timeMath .. " joker tokens to prevent loosing your streak.")
-			else
-				player:setStreakLevel(0)
-				if player:getLastLoginSaved() > 0 then -- message wont appear at first character login
-					player:setJokerTokens(-(player:getJokerTokens()))
-					player:sendTextMessage(MESSAGE_LOGIN, "You just lost your daily reward streak.")
-				end
-			end
-		end
+	-- Never lose streak: if player missed time, just advance nextRewardTime without penalties
+	local currentTime = GetDailyRewardLastServerSave()
+	local nextRewardTime = player:getNextRewardTime()
+	if nextRewardTime > 0 and currentTime > nextRewardTime then
+		player:setNextRewardTime(currentTime + DailyReward.serverTimeThreshold)
 	end
 
 	-- Daily reward golden icon
