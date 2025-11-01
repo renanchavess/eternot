@@ -82,7 +82,7 @@ monster.loot = {
 	{ id = 3029, chance = 8000, maxCount = 5 }, -- small sapphire
 	{ id = 7643, chance = 8000, maxCount = 5 }, -- ultimate health potion
 	{ id = 16120, chance = 8000, maxCount = 3 }, -- violet crystal shard
-	{ id = 22721, chance = 100000 }, -- gold token
+	{ id = 22721, chance = 100000, minCount = 4, maxCount = 7 }, -- gold token
 	{ id = 23509, chance = 100000 }, -- mysterious remains
 	{ id = 3038, chance = 8000 }, -- green gem
 	{ id = 7427, chance = 6000 }, -- chaos mace
